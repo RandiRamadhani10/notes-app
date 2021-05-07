@@ -1,34 +1,40 @@
 <%- include('partials/doctype'); %>
 
 <body>
-<%- include('partials/navbar'); %>
-<% if ( locals.notes?.length < 1) { %>
-    <div class="container ">
-        <div class="alert alert-secondary " role="alert">
-            Tidak ada catatan!
-        </div>
-    </div>
-<% } %>
-    <div class="container"> 
-        <div class="row">
-            <% if (locals.notes) { %>
-                <% notes.forEach((note) =>{ %>
-                    <div class="col-12 col-md-6 col-lg-4">
-                        <div class="card shadow p-3 mb-5 bg-white rounded">
-                            <div class="card-body">
-                                <h5 class="card-title"><%= note.title %></h5>
-                                <p class="card-text"><%= note.body %></p>
-                                <h6 class="card-subtitle mb-2 text-muted"><%= note.createdAt %></h6>
-                                <a href="/edit/<%= note.id %>" class="card-link">Edit</a>
-                                <a href="/delete/<%= note.id %>" class="card-link">Delete</a>
-                            </div>
-                        </div>
-                    </div>
-                <% }); %>
+    <%- include('partials/navbar'); %>
+        <% if ( locals.notes?.length < 1) { %>
+            <div class="container ">
+                <div class="alert alert-secondary " role="alert">
+                    Tidak ada catatan!
+                </div>
+            </div>
             <% } %>
-            <%- include('partials/alert-error'); %>
-        </div>
-    </div>
-<%- include('partials/script'); %>
+                <div class="container">
+                    <div class="row">
+                        <% if (locals.notes) { %>
+                            <% notes.forEach((note)=>{ %>
+                                <div class="col-12 col-md-6 col-lg-4">
+                                    <div class="card shadow p-3 mb-5 bg-white rounded">
+                                        <div class="card-body">
+                                            <h5 class="card-title">
+                                                <%= note.title %>
+                                            </h5>
+                                            <p class="card-text">
+                                                <%= note.body %>
+                                            </p>
+                                            <h6 class="card-subtitle mb-2 text-muted">
+                                                <%= note.createdAt %>
+                                            </h6>
+                                            <a href="/edit/<%= note.id %>" class="card-link">Edit</a>
+                                            <a href="/delete/<%= note.id %>" class="card-link">Delete</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            <% }); %>
+                        <% } %>
+                        <%- include('partials/alert-error'); %>
+                    </div>
+                </div>
+                <%- include('partials/script'); %>
 </body>
 <%- include('partials/doctype-end'); %>
